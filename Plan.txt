@@ -1,0 +1,8 @@
+Current List of Required Features:-
+
+1. Code Evaluation By Running Predefined Test Cases.
+2. Grouping of Questions into Problem Sets for Quiz Purposes.
+3. Students Accounts And Classes, Teacher Accounts.
+4. A Database of All Problems with Access Control.
+5. Automatic Grading.
+6. Support for Assignments.
