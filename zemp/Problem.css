@@ -1,0 +1,68 @@
+.brand {
+    font-size: xx-large;
+}
+
+header {
+    color: white;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    margin: 0pt 0pt;
+    padding: 0pt 0pt;
+}
+
+header ul li {
+    margin: 0pt 0pt;
+    padding: 0pt 0pt;
+}
+
+nav ul {
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    list-style-type: none;
+    margin: 0pt 0pt;
+    padding: 0pt 0pt;
+}
+
+nav ul li {
+    padding: 10pt 10pt;
+}
+
+nav ul li:hover {
+    background-color: #eee;
+}
+
+.problem {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.problem .title {
+    text-align: center;
+}
+
+.problem .constraints {
+    text-align: center;
+}
+
+.problem .examples > * {
+    margin: 10pt 0pt;
+}
+
+.problem .example > * {
+    border: 1px solid black;
+}
+
+.problem .example .input-title {
+    background-color: #eee;
+}
+
+.problem .example .output-title {
+    background-color: #eee;
+}

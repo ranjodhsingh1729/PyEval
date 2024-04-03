@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block body %}
+
+{% if form.errors %}
+
+<div class="msg-bar">
+    Invalid Username or Password!
+</div>
+
+{% else %}
+
+{% if next %}
+
+    {% if user.is_authenticated %}
+        <div class="msg-bar">
+            Access Denied!
+        </div>
+    {% endif %}
+
+{% endif %}
+
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Login Form</legend>
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Login"></td>
+                <td><a href="{% url 'password_reset' %}">Lost password?</a></td>
+            </tr>
+        </table>    
+    </fieldset>
+    <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{% endblock %}
