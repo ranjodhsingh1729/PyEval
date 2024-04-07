@@ -1,0 +1,17 @@
+div.problem {
+    width: 50vw;
+}
+
+div.title, div.constraints {
+    text-align: center;
+}
+
+div.example {
+    margin: 5pt 0pt;
+    border: 1px solid black;
+}
+
+div.example div.example-title {
+    background-color: #e4dddd;
+    border-bottom: 1px solid black;
+}

@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="main">
+    <h1>{{ title }}</h1>
+    <form action="#" method="post" class="std-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="topic">Topic: </label></td>
+                <td><input type="text" id="topic" name="topic" required></td>
+            </tr>
+            <tr>
+                <td><label for="start_date">Start Time: </label></td>
+                <td><input type="date" id="start_date" name="start_date">
+                    <input type="time" id="start_time" name="start_time">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="stop_date">Stop Time: </label></td>
+                <td><input type="date" id="stop_date" name="stop_date">
+                    <input type="time" id="stop_time" name="stop_time">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="instructions">Instructions: </label></td>
+                <td>
+                    <textarea name="instructions" id="instructions" required cols="40" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Create"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

@@ -2,6 +2,16 @@ body {
     margin: 0pt;
 }
 
+div.main {
+    margin-bottom: 100pt;
+}
+
+div.main > * {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -39,14 +49,57 @@ header button {
     font-size: inherit;
 
     border: none;
-    padding: 10pt 20pt
+    padding: 10pt 20pt;
 }
 
 header button:hover {
     background-color: #555;
 }
 
+div.nav {
+    font-size: large;
+
+    max-width: 33vw;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    }
+
+div.nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+
+    margin: 0pt 0pt;
+    padding: 0pt 0pt;
+}
+
+div.nav a {
+    border: 1px solid white;
+    border-radius: 10pt;
+}
+
+div.nav a:hover {
+    border: 1px solid rgb(200, 200, 200);
+    background-color: rgb(240, 240, 240);
+
+}
+
+div.nav ul li a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+
+    padding: 5pt;
+}
+
+
+
 div.msg-bar {
+    width: 100vw;
     color: white;
     background-color: rgb(255, 75, 75);
 
@@ -56,14 +109,147 @@ div.msg-bar {
 
 div.msg-box {
     width: max-content;
-    margin-top: 3rem;
+    margin: 10pt;
     margin-left: auto;
     margin-right: auto;
 
     font-size: xx-large;
 
-    border: 3pt solid green;
+    border: 3pt solid rgb(255, 75, 75);
     border-radius: 7pt;
 
     padding: 10pt;
+}
+
+
+.std-form {
+    font-size: large;
+    font-weight: bold;
+
+    margin-top: 10pt;
+
+    border: 1px solid rgb(208, 215, 222);
+    border-radius: 3pt;
+
+    background-color: rgb(246, 248, 250);
+}
+
+.std-form table td {
+    padding: 5pt 10pt;
+}
+
+.std-form input[type="submit"] {
+    width: 100%;
+    font-size: large;
+
+    padding: 5pt 10pt;
+
+    color: white;
+    background-color: rgb(31, 136, 61);
+
+    border: 1px solid rgb(28, 97, 49);
+    border-radius: 3pt;
+
+}
+
+.std-form input[type="submit"]:hover {
+    background-color: rgb(28, 124, 55);
+}
+
+
+div.container {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    padding: 10pt;
+
+    border: 1px solid rgb(208, 215, 222);
+    border-radius: 3pt;
+
+}
+
+div.box {
+    width: 30vw;
+
+    text-align: center;
+
+    margin: 10pt;
+
+    border: 1px solid rgb(208, 215, 222);
+    border-radius: 3pt;
+
+
+}
+
+div.box a {
+    display: block;
+    padding: 10pt;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+div.box a:hover {
+    background-color: rgb(246, 248, 250);
+}
+
+table.hover-table {
+    width: 750pt;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.hover-table a {
+    display: block;
+    padding: 5pt;
+    color: inherit;
+    text-decoration: none;
+}
+
+table.hover-table a:hover {
+    background-color: rgb(189, 177, 177);
+}
+
+table.hover-table tr:first-child {
+    background-color: rgb(163, 156, 156);
+}
+
+table.hover-table tr.hover-rows:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+table.hover-table td {
+    border: 1px solid black;
+}
+
+div.new_button {
+    color: white;
+    background-color: black;
+
+    position: absolute;
+    bottom: 33pt;
+    right: 33pt;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 33pt;
+    width: 33pt;
+
+    font-size: xx-large;
+    font-weight: bolder;
+
+    border: 1px solid black;
+    border-radius: 50%;
+
+    padding: 0pt;
+}
+
+div.new_button:hover {
+    background-color: #555;
+}
+
+div.new_button a {
+    color: inherit;
+    text-decoration: none;
 }

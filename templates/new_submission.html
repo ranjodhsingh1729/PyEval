@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div class="nav">
+    <ul>
+        <li><a href="{% url 'quiz' quiz.id %}">Statement</a></li>
+        <li><a href="{% url 'new_submission' quiz.id %}">Submission</a></li>
+    </ul>
+</div>
+
+<div class="main">
+    <h1>{{ title }}</h1>
+    <form action="#" method="post" class="std-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="problem">Problem: </label></td>
+                <td>
+                    <select name="problem" id="problem" required>
+                        {% for problem in problems %}
+                            <option value="{{ problem.id }}">{{ problem.title }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="lang">Language: </label></td>
+                <td>
+                    <select name="lang" id="lang" required>
+                        {% for code, lang in languages.items %}
+                            <option value="{{ code }}">{{ lang }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="source_code">Source Code: </label></td>
+                <td>
+                    <textarea name="source_code" id="source_code" required cols="40" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

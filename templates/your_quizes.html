@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+<div class="main">
+    <h1>{{ title }}</h1>
+    <table class="hover-table">
+        <tr>
+            <th>ID</th>
+            <th>Topic</th>
+            <th>Action</th>
+        </tr>
+        {% for quiz in quizes %}
+        <tr class="hover-rows">
+            <td>{{ quiz.id }}</td>
+            <td><a href="{% url 'quiz' quiz.id %}">{{ quiz.topic }}</a></td>
+            <td><a href="#">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="new_button">
+    <a href="{% url 'new_quiz' %}">+</a>
+</div>
+
+{% endblock %}

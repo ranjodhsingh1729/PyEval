@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="main">
+    <h1>{{ title }}</h1>
+    <table class="hover-table">
+
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        {% for problem in problems %}
+        <tr class="hover-rows">
+            <td>{{ problem.id }}</td>
+            <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
+            <td><a href="#">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="new_button">
+    <a href="{% url 'new_problem' %}">+</a>
+</div>
+
+{% endblock %}
