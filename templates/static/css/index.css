@@ -221,6 +221,10 @@ table.hover-table td {
     border: 1px solid black;
 }
 
+table.hover-table th {
+    border: 1px solid black;
+}
+
 div.new_button {
     color: white;
     background-color: black;
@@ -252,4 +256,57 @@ div.new_button:hover {
 div.new_button a {
     color: inherit;
     text-decoration: none;
+}
+
+table.top-table {
+    margin: 10pt auto;
+}
+
+table.top-table table {
+    max-width: 45vw;
+}
+
+table.top-table > tbody > tr > td {
+    text-align: center;
+    vertical-align: top;
+}
+
+table.hover-table > tbody > tr > td > form {
+    height: 100%;
+    width: 100%;
+}
+
+
+button.subtle {
+    font-size: medium;
+
+    border: none;
+    background-color: inherit;
+    
+    height: 100%;
+    width: 100%;
+    
+    padding: 5pt;
+}
+
+button.subtle:hover {
+    background-color: rgb(189, 177, 177);
+
+}
+
+a.btn-prm {
+    font-size: larger;
+    font-weight: bolder;
+
+    display: block;
+    margin: 25pt auto;
+
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: #1F883D;
+
+    width: 80vw;
+    padding: 10pt;
 }

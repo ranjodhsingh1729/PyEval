@@ -15,7 +15,7 @@
 
 <div class="main">
     <h1>{{ title }}</h1>
-    <form action="#" method="post" class="std-form">
+    <form action="" method="post" class="std-form">
         {% csrf_token %}
         <table>
             <tr>
@@ -32,8 +32,8 @@
                 <td><label for="lang">Language: </label></td>
                 <td>
                     <select name="lang" id="lang" required>
-                        {% for code, lang in languages.items %}
-                            <option value="{{ code }}">{{ lang }}</option>
+                        {% for lang in languages %}
+                            <option value="{{ lang.id }}">{{ lang.name }}</option>
                         {% endfor %}
                     </select>
                 </td>

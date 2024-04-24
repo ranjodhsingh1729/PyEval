@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="main">
+    <table class="top-table">
+        <tr>
+            <td>
+                <div>
+                    <table class="hover-table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for problem in quiz.problems.all %}
+                        <tr class="hover-rows">
+                            <td>{{ problem.id }}</td>
+                            <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
+                            <td><a href="#">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+            <td>
+                <table class="hover-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for problem in quiz.problems.all %}
+                    <tr class="hover-rows">
+                        <td>{{ problem.id }}</td>
+                        <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
+                        <td><a href="#">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+        </td>            
+        </tr>
+    </table>
+</div>
+{% endblock %}

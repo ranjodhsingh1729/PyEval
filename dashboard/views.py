@@ -1,3 +1,5 @@
+import json
+
 from datetime import datetime
 
 from django.shortcuts import render, redirect
@@ -36,14 +38,46 @@ def new_problem(request):
                 output_format = form["output_format"],
                 note = form["note"],
 
-                train_cases = form["train_cases"],
-                test_cases = form["test_cases"],
+                complete = False,
+
+                cases = {
+                    "input": [],
+                    "output": []
+                }
             )
             new_problem.authors.add(request.user)
             new_problem.save()
-            return redirect('/dashboard/your_problems')
+            return redirect(f'/dashboard/new_problem/{new_problem.id}/add_cases')
     else:
         return redirect('/accounts/login?next=/dashboard/new_problem')
+    
+def add_cases(request, id):
+    if request.user.is_authenticated:
+        problem = Problem.objects.get(id=id)
+        if request.method == "GET":
+            context = {"title": "Create Problem", "request": request, "problem": problem, "train_cases": problem.cases.get("train"), "test_cases": problem.cases.get("test")}
+            return render(request, 'add_cases.html', context=context)
+        
+        if request.method == "POST":
+            form = request.POST
+            if (form["action"] == "add"):
+                case = {
+                    "input": form["input"],
+                    "output": form["output"]
+                }
+                problem.cases.get(form["case"]).append(case)
+            elif (form["action"] == "delete"):
+                problem.cases.get(form["item_type"]).pop(int(form["item_index"]) - 1)
+            elif (form["action"] == "view"):
+                case = problem.cases.get(form["item_type"])[int(form["item_index"]) - 1]
+                return HttpResponse(
+                    "<pre>" + json.dumps(case, indent=4) + "</pre>"
+                )
+
+            problem.save()
+            return redirect(f'/dashboard/new_problem/{id}/add_cases')
+    else:
+        return redirect(f'/accounts/login?next=/dashboard/new_problem/{id}/add_cases')
 
 def your_problems(request):
     if request.user.is_authenticated and request.user.groups.filter(name="Teachers").exists():
@@ -75,9 +109,38 @@ def new_quiz(request):
             )
             new_quiz.authors.add(request.user)
             new_quiz.save()
-            return redirect('/dashboard/your_quizes')
+            return redirect(f'/dashboard/new_quiz/{new_quiz.id}/add_problems')
     else:
         return redirect('/accounts/login?next=/dashboard/new_quiz')
+    
+def add_problems(request, id):
+    if request.user.is_authenticated:
+        quiz = Quiz.objects.get(id=id)
+        if request.method == "GET":
+            context = {"title": "Create Quiz", "request": request, "quiz": quiz}
+            return render(request, 'add_problem.html', context=context)
+        
+        # if request.method == "POST":
+        #     form = request.POST
+        #     if (form["action"] == "add"):
+        #         case = {
+        #             "input": form["input"],
+        #             "output": form["output"]
+        #         }
+        #         problem.cases.get(form["case"]).append(case)
+        #     elif (form["action"] == "delete"):
+        #         problem.cases.get(form["item_type"]).pop(int(form["item_index"]) - 1)
+        #     elif (form["action"] == "view"):
+        #         case = problem.cases.get(form["item_type"])[int(form["item_index"]) - 1]
+        #         return HttpResponse(
+        #             "<pre>" + json.dumps(case, indent=4) + "</pre>"
+        #         )
+
+        #     problem.save()
+        #     return redirect(f'/dashboard/new_problem/{id}/add_cases')
+    else:
+        return redirect(f'/accounts/login?next=/dashboard/new_problem/{id}/add_cases')
+
 
 def your_quizes(request):
     if request.user.is_authenticated and request.user.groups.filter(name="Teachers").exists():

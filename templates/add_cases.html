@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="main">
+    <table class="top-table">
+        <tr>
+            <th>Example Cases</th>
+            <th>Test Cases</th>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <table class="hover-table">
+                        <tr>
+                            <th>Case</th>
+                            <th>View</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for case in train_cases %}
+                        <tr class="hover-rows">
+                            <td>Case {{ forloop.counter }}</td>
+                            <td>
+                                <form action="#" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="view">
+                                    <input type="hidden" name="item_type" value="test">
+                                    <input type="hidden" name="item_index" value="{{forloop.counter}}">
+                                    <button class="subtle" type="submit">View</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="#" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="item_type" value="train">
+                                    <input type="hidden" name="item_index" value="{{forloop.counter}}">
+                                    <button class="subtle" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <table class="hover-table">
+                        <tr>
+                            <th>Case</th>
+                            <th>View</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for case in test_cases %}
+                        <tr class="hover-rows">
+                            <td>Case {{ forloop.counter }}</td>
+                            <td>
+                                <form action="#" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="view">
+                                    <input type="hidden" name="item_type" value="test">
+                                    <input type="hidden" name="item_index" value="{{forloop.counter}}">
+                                    <button class="subtle" type="submit">View</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="#" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="item_type" value="test">
+                                    <input type="hidden" name="item_index" value="{{forloop.counter}}">
+                                    <button class="subtle" type="submit">Delete</button>
+                                </form>            
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <h2>Add Cases</h2>
+    <form action="#" method="post" class="std-form">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="add">
+        <table>
+            <tr>
+                <td><label for="case">Case: </label></td>
+                <td>
+                    <select name="case" id="case" required>
+                        <option value="test">Test Case</option>
+                        <option value="train">Example Case</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="input">Input: </label></td>
+                <td>
+                    <textarea name="input" id="input" required cols="40" rows="7"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="output">Output: </label></td>
+                <td>
+                    <textarea name="output" id="output" required cols="40" rows="7"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+    <a href="{% url 'your_problems' %}" class="btn-prm">Done</a>
+</div>
+{% endblock %}

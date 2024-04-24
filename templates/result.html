@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+{% endblock  %}
+
+{% block body %}
+
+<div class="nav">
+    <ul>
+        <li><a href="{% url 'quiz' quiz.id %}">Statement</a></li>
+        <li><a href="{% url 'new_submission' quiz.id %}">Submission</a></li>
+    </ul>
+</div>
+
+<div class="main">
+    <h1>{{ title }}</h1>
+
+    <h2>Grades</h2>
+    <table class="hover-table">
+
+        <tr>
+            <th>Student ID</th>
+            <th>Accepted</th>
+            <th>Rejected</th>
+            <th>Undefined</th>
+        </tr>
+        {% for id, val in result.items %}
+        <tr class="hover-rows">
+            <td>{{ id }}</td>
+            <td>{{ val.T }}</td>
+            <td>{{ val.F }}</td>
+            <td>{{ val.U }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

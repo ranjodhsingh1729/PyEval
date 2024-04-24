@@ -5,54 +5,196 @@ from django.contrib.auth.models import Group
 User = get_user_model()
 
 # Create your models here.
-Languages = {
-    "1": "Assembly (NASM 2.14.02)",
-    "2": "Bash (5.0.0)",
-    "3": "Basic (FBC 1.07.1)",
-    "4": "C (Clang 7.0.1)",
-    "5": "C (GCC 7.4.0)",
-    "6": "C (GCC 8.3.0)",
-    "7": "C (GCC 9.2.0)",
-    "8": "C# (Mono 6.6.0.161)",
-    "9": "C++ (Clang 7.0.1)",
-    "10": "C++ (GCC 7.4.0)",
-    "11": "C++ (GCC 8.3.0)",
-    "12": "C++ (GCC 9.2.0)",
-    "13": "Clojure (1.10.1)",
-    "14": "COBOL (GnuCOBOL 2.2)",
-    "15": "Common Lisp (SBCL 2.0.0)",
-    "16": "D (DMD 2.089.1)",
-    "17": "Elixir (1.9.4)",
-    "18": "Erlang (OTP 22.2)",
-    "19": "Executable",
-    "20": "F# (.NET Core SDK 3.1.202)",
-    "21": "Fortran (GFortran 9.2.0)",
-    "22": "Go (1.13.5)",
-    "23": "Groovy (3.0.3)",
-    "24": "Haskell (GHC 8.8.1)",
-    "25": "Java (OpenJDK 13.0.1)",
-    "26": "JavaScript (Node.js 12.14.0)",
-    "27": "Kotlin (1.3.70)",
-    "28": "Lua (5.3.5)",
-    "29": "Objective-C (Clang 7.0.1)",
-    "30": "OCaml (4.09.0)",
-    "31": "Octave (5.1.0)",
-    "32": "Pascal (FPC 3.0.4)",
-    "33": "Perl (5.28.1)",
-    "34": "PHP (7.4.1)",
-    "35": "Plain Text",
-    "36": "Prolog (GNU Prolog 1.4.5)",
-    "37": "Python (2.7.17)",
-    "38": "Python (3.8.1)",
-    "39": "R (4.0.0)",
-    "40": "Ruby (2.7.0)",
-    "41": "Rust (1.40.0)",
-    "42": "Scala (2.13.2)",
-    "43": "SQL (SQLite 3.27.2)",
-    "44": "Swift (5.2.3)",
-    "45": "TypeScript (3.7.4)",
-    "46": "Visual Basic.Net (vbnc 0.0.0.5943)",
-}
+Languages = [
+    {
+        "id": 45,
+        "name": "Assembly (NASM 2.14.02)"
+    },
+    {
+        "id": 46,
+        "name": "Bash (5.0.0)"
+    },
+    {
+        "id": 47,
+        "name": "Basic (FBC 1.07.1)"
+    },
+    {
+        "id": 75,
+        "name": "C (Clang 7.0.1)"
+    },
+    {
+        "id": 76,
+        "name": "C++ (Clang 7.0.1)"
+    },
+    {
+        "id": 48,
+        "name": "C (GCC 7.4.0)"
+    },
+    {
+        "id": 52,
+        "name": "C++ (GCC 7.4.0)"
+    },
+    {
+        "id": 49,
+        "name": "C (GCC 8.3.0)"
+    },
+    {
+        "id": 53,
+        "name": "C++ (GCC 8.3.0)"
+    },
+    {
+        "id": 50,
+        "name": "C (GCC 9.2.0)"
+    },
+    {
+        "id": 54,
+        "name": "C++ (GCC 9.2.0)"
+    },
+    {
+        "id": 86,
+        "name": "Clojure (1.10.1)"
+    },
+    {
+        "id": 51,
+        "name": "C# (Mono 6.6.0.161)"
+    },
+    {
+        "id": 77,
+        "name": "COBOL (GnuCOBOL 2.2)"
+    },
+    {
+        "id": 55,
+        "name": "Common Lisp (SBCL 2.0.0)"
+    },
+    {
+        "id": 56,
+        "name": "D (DMD 2.089.1)"
+    },
+    {
+        "id": 57,
+        "name": "Elixir (1.9.4)"
+    },
+    {
+        "id": 58,
+        "name": "Erlang (OTP 22.2)"
+    },
+    {
+        "id": 44,
+        "name": "Executable"
+    },
+    {
+        "id": 87,
+        "name": "F# (.NET Core SDK 3.1.202)"
+    },
+    {
+        "id": 59,
+        "name": "Fortran (GFortran 9.2.0)"
+    },
+    {
+        "id": 60,
+        "name": "Go (1.13.5)"
+    },
+    {
+        "id": 88,
+        "name": "Groovy (3.0.3)"
+    },
+    {
+        "id": 61,
+        "name": "Haskell (GHC 8.8.1)"
+    },
+    {
+        "id": 62,
+        "name": "Java (OpenJDK 13.0.1)"
+    },
+    {
+        "id": 63,
+        "name": "JavaScript (Node.js 12.14.0)"
+    },
+    {
+        "id": 78,
+        "name": "Kotlin (1.3.70)"
+    },
+    {
+        "id": 64,
+        "name": "Lua (5.3.5)"
+    },
+    {
+        "id": 89,
+        "name": "Multi-file program"
+    },
+    {
+        "id": 79,
+        "name": "Objective-C (Clang 7.0.1)"
+    },
+    {
+        "id": 65,
+        "name": "OCaml (4.09.0)"
+    },
+    {
+        "id": 66,
+        "name": "Octave (5.1.0)"
+    },
+    {
+        "id": 67,
+        "name": "Pascal (FPC 3.0.4)"
+    },
+    {
+        "id": 85,
+        "name": "Perl (5.28.1)"
+    },
+    {
+        "id": 68,
+        "name": "PHP (7.4.1)"
+    },
+    {
+        "id": 43,
+        "name": "Plain Text"
+    },
+    {
+        "id": 69,
+        "name": "Prolog (GNU Prolog 1.4.5)"
+    },
+    {
+        "id": 70,
+        "name": "Python (2.7.17)"
+    },
+    {
+        "id": 71,
+        "name": "Python (3.8.1)"
+    },
+    {
+        "id": 80,
+        "name": "R (4.0.0)"
+    },
+    {
+        "id": 72,
+        "name": "Ruby (2.7.0)"
+    },
+    {
+        "id": 73,
+        "name": "Rust (1.40.0)"
+    },
+    {
+        "id": 81,
+        "name": "Scala (2.13.2)"
+    },
+    {
+        "id": 82,
+        "name": "SQL (SQLite 3.27.2)"
+    },
+    {
+        "id": 83,
+        "name": "Swift (5.2.3)"
+    },
+    {
+        "id": 74,
+        "name": "TypeScript (3.7.4)"
+    },
+    {
+        "id": 84,
+        "name": "Visual Basic.Net (vbnc 0.0.0.5943)"
+    }
+]
 
 
 class Problem(models.Model):
@@ -70,12 +212,15 @@ class Problem(models.Model):
     output_stream = models.CharField(max_length=255)
 
     # Cases
-    train_cases = models.JSONField()
-    test_cases = models.JSONField()
+    cases = models.JSONField()
+
+    # Ready
+    complete = models.BooleanField()
 
     # Access
     authors = models.ManyToManyField(User, related_name="authored_problem_set")
-    assigned = models.ManyToManyField(User, related_name="assigned_problem_set")
+    assigned = models.ManyToManyField(
+        User, related_name="assigned_problem_set")
 
 
 class Quiz(models.Model):
@@ -96,18 +241,20 @@ class Quiz(models.Model):
 class Submission(models.Model):
     # Info
     source_code = models.TextField()
-    source_lang = models.CharField(max_length=2, choices=Languages)
+    source_lang = models.IntegerField()
     time_usage = models.IntegerField(null=True)  # ms
     memory_usage = models.IntegerField(null=True)  # kb
 
     time_of_submission = models.DateTimeField(auto_now_add=True)
+    token = models.JSONField()
 
     verdict_choices = {
         "U": "Pending",
         "T": "Accepted",
         "F": "Rejected",
     }
-    verdict = models.CharField(max_length=1, choices=verdict_choices, default="U")
+    verdict = models.CharField(
+        max_length=1, choices=verdict_choices, default="U")
 
     # Relation
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -117,3 +264,8 @@ class Submission(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
 
+
+class Result(models.Model):
+    # Info
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    data = models.JSONField()
