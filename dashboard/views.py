@@ -112,34 +112,23 @@ def new_quiz(request):
             return redirect(f'/dashboard/new_quiz/{new_quiz.id}/add_problems')
     else:
         return redirect('/accounts/login?next=/dashboard/new_quiz')
-    
+
 def add_problems(request, id):
     if request.user.is_authenticated:
         quiz = Quiz.objects.get(id=id)
+        qprobs = quiz.problems.all()
+        problems = Problem.objects.all()
         if request.method == "GET":
-            context = {"title": "Create Quiz", "request": request, "quiz": quiz}
+            context = {"title": "Create Quiz", "request": request, "qprobs": qprobs, "problems": problems}
             return render(request, 'add_problem.html', context=context)
-        
-        # if request.method == "POST":
-        #     form = request.POST
-        #     if (form["action"] == "add"):
-        #         case = {
-        #             "input": form["input"],
-        #             "output": form["output"]
-        #         }
-        #         problem.cases.get(form["case"]).append(case)
-        #     elif (form["action"] == "delete"):
-        #         problem.cases.get(form["item_type"]).pop(int(form["item_index"]) - 1)
-        #     elif (form["action"] == "view"):
-        #         case = problem.cases.get(form["item_type"])[int(form["item_index"]) - 1]
-        #         return HttpResponse(
-        #             "<pre>" + json.dumps(case, indent=4) + "</pre>"
-        #         )
-
-        #     problem.save()
-        #     return redirect(f'/dashboard/new_problem/{id}/add_cases')
+        if request.method == "POST":
+            form = request.POST
+            problem = Problem.objects.get(id=int(form["prob"]))
+            quiz.problems.add(problem)
+            quiz.save()
+            return redirect(f'/dashboard/new_quiz/{id}/add_problems')
     else:
-        return redirect(f'/accounts/login?next=/dashboard/new_problem/{id}/add_cases')
+        return redirect(f'/accounts/login?next=/dashboard/new_quiz/{id}/add_problems')
 
 
 def your_quizes(request):

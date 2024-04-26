@@ -5,44 +5,41 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<div class="main">
-    <table class="top-table">
-        <tr>
-            <td>
-                <div>
-                    <table class="hover-table">
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Action</th>
-                        </tr>
-                        {% for problem in quiz.problems.all %}
-                        <tr class="hover-rows">
-                            <td>{{ problem.id }}</td>
-                            <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
-                            <td><a href="#">Edit</a></td>
-                        </tr>
+<div class="main">\
+    <div class="container">
+        <table class="hover-table">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+            {% for problem in qprobs %}
+            <tr class="hover-rows">
+                <td>{{ problem.id }}</td>
+                <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
+                <td><a href="#">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <form action="" method="post" class="std-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="prob">Problems: </label></td>
+                <td>
+                    <select name="prob" id="prob" required>
+                        {% for prob in problems %}
+                            <option value="{{ prob.id }}">{{ prob.id }}.{{ prob.title }}</option>
                         {% endfor %}
-                    </table>
-                </div>
-            </td>
-            <td>
-                <table class="hover-table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Action</th>
-                    </tr>
-                    {% for problem in quiz.problems.all %}
-                    <tr class="hover-rows">
-                        <td>{{ problem.id }}</td>
-                        <td><a href="{% url 'problem' problem.id %}">{{ problem.title }}</a></td>
-                        <td><a href="#">Edit</a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-        </td>            
-        </tr>
-    </table>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Add Problem"></td>
+            </tr>
+        </table>
+    </form>
+
 </div>
 {% endblock %}

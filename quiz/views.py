@@ -3,8 +3,6 @@ import threading
 from requests import Session
 from datetime import datetime
 
-from urllib.parse import urlencode
-
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from django.contrib.auth import get_user_model
@@ -15,11 +13,11 @@ from .models import Problem, Quiz, Submission, Result, Languages
 User = get_user_model()
 
 session = Session()
-judge = "http://10.10.199.213:2358/submissions/?base64_encoded=false&wait=false"
+judge = "http://10.10.215.167:2358/submissions/?base64_encoded=false&wait=false"
 
 
 def status_uri(token):
-    return f"http://10.10.199.213:2358/submissions/{token}?base64_encoded=false&fields=time,memory,status"
+    return f"http://10.10.215.167:2358/submissions/{token}?base64_encoded=false&fields=time,memory,status"
 
 def get_status(submission):
     status = session.get(status_uri(submission.token))
