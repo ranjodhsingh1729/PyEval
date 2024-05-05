@@ -13,11 +13,14 @@ from .models import Problem, Quiz, Submission, Result, Languages
 User = get_user_model()
 
 session = Session()
-judge = "http://0.0.0.0:2358/submissions/?base64_encoded=false&wait=false"
 
+judge = "http://0.0.0.0:2358/"
+
+def submission_uri():
+    return judge+"submissions/?base64_encoded=false&wait=false"
 
 def status_uri(token):
-    return f"http://0.0.0.0:2358/submissions/{token}?base64_encoded=false&fields=time,memory,status"
+    return judge+f"submissions/{token}?base64_encoded=false&fields=time,memory,status"
 
 def get_status(submission):
     status = session.get(status_uri(submission.token))
@@ -92,7 +95,7 @@ def new_submission(request, id):
                     "expected_output": case["output"]
                 }
 
-                res = session.post(judge, params=params)
+                res = session.post(submission_uri(), params=params)
                 if res.ok:
                     token["submissions"].append(json.loads(res.text))
                 else:
