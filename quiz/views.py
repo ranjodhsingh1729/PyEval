@@ -13,11 +13,11 @@ from .models import Problem, Quiz, Submission, Result, Languages
 User = get_user_model()
 
 session = Session()
-judge = "http://10.10.215.167:2358/submissions/?base64_encoded=false&wait=false"
+judge = "http://0.0.0.0:2358/submissions/?base64_encoded=false&wait=false"
 
 
 def status_uri(token):
-    return f"http://10.10.215.167:2358/submissions/{token}?base64_encoded=false&fields=time,memory,status"
+    return f"http://0.0.0.0:2358/submissions/{token}?base64_encoded=false&fields=time,memory,status"
 
 def get_status(submission):
     status = session.get(status_uri(submission.token))
@@ -55,7 +55,7 @@ def problem(request, id):
     if request.user.is_authenticated and request.user.authored_problem_set.filter(id=id).exists():
         problem = Problem.objects.get(id=id)
         context = {"request": request, "problem": problem,
-                   "title": problem.title, "examples": [1]}
+                   "title": problem.title, "examples": problem.cases.get("train")}
         return render(request, 'problem.html', context=context)
     else:
         return redirect(f'/accounts/login?next=/resources/problem/{id}')

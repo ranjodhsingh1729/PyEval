@@ -41,8 +41,8 @@ def new_problem(request):
                 complete = False,
 
                 cases = {
-                    "input": [],
-                    "output": []
+                    "test": [],
+                    "train": [],
                 }
             )
             new_problem.authors.add(request.user)

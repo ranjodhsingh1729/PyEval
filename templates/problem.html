@@ -38,9 +38,9 @@
             {% for example in examples %}
                 <div class="example">
                     <div class="example-title">Input</div>
-                    <div class="example-value">1, 2, 3</div>
+                    <div class="example-value">{{ example.input }}</div>
                     <div class="example-title">Output</div>
-                    <div class="example-value">1, 2, 3</div>
+                    <div class="example-value">{{ example.output }}</div>
                 </div>
         {% endfor %}
         </div>
